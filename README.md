@@ -60,7 +60,7 @@
 | postal_code        | string     | null: false |
 | delivery_area_id   | integer    | null: false |
 | city               | string     | null: false |
-| building           | string     | null: false |
+| street_number      | string     | null: false |
 | building_name      | string     |             | 
 | phone_number       | string     | null: false |
 | order              | references | null: false, foreign_key: true |
