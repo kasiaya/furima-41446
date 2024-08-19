@@ -11,7 +11,7 @@
 | last_name          | string | null: false |
 | first_name_kana    | string | null: false |
 | last_name_kana     | string | null: false |
-| birth_date         | string | null: false |
+| birth_date         | date   | null: false |
 
 ### Association
 
@@ -35,7 +35,7 @@
 
 ### Association
 
-- belongs_to :users
+- belongs_to :user
 - has_one : order
 
 
@@ -50,7 +50,7 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one : delivery_addresses
+- has_one : delivery_address
 
 
 ## delivery_addresses テーブル
@@ -58,7 +58,7 @@
 | Column             | Type       | Options     |
 | ------------------ | ---------- | ----------- |
 | postal_code        | string     | null: false |
-| prefecture_id      | integer    | null: false |
+| delivery_area_id   | integer    | null: false |
 | city               | string     | null: false |
 | building           | string     | null: false |
 | building_name      | string     |             | 
