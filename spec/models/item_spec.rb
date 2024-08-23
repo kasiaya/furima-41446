@@ -58,6 +58,16 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Lead time is not a number')
       end
+      it 'リードタイムが空では保存できない' do
+        @item.lead_time_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Lead time is not a number')
+      end
+      it '画像が添付されていなければ保存できない' do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Image can\'t be blank') # エラーメッセージは適宜調整
+      end
     end
   end
 end
