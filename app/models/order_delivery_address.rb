@@ -14,7 +14,7 @@ class OrderDeliveryAddress
   validates :delivery_area_id, numericality: { other_than: 0, message: "can't be blank" }
 
   def save
-    # 注文情報を保存し、変数donationに代入する
+    # 注文情報を保存し、変数orderに代入する
     order = Order.create(user_id:, item_id:)
     # 住所を保存する
     # order_idには、変数orderのidと指定する
