@@ -1,6 +1,7 @@
 class OrderDeliveryAddress
   include ActiveModel::Model
   attr_accessor :postal_code, :delivery_area_id, :city, :street_number, :building_name, :phone_number, :user_id, :item_id
+  attr_accessor :token
 
   with_options presence: true do
     validates :user_id
@@ -9,8 +10,8 @@ class OrderDeliveryAddress
     validates :delivery_area_id, numericality: { other_than: 1 }
     validates :city
     validates :street_number
-
     validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'must be 10 or 11 digits' }
+    validates :token
   end
   validates :delivery_area_id, numericality: { other_than: 0, message: "can't be blank" }
   # validates :building_name
