@@ -5,12 +5,13 @@ class OrdersController < ApplicationController
 
   def index
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
-    # @item = Item.find(params[:item_id])
     @order_delivery_address = OrderDeliveryAddress.new
+    return if @item.order.nil?
+
+    redirect_to root_path
   end
 
   def create
-    # @item = Item.find(params[:item_id])
     @order_delivery_address = OrderDeliveryAddress.new(order_params)
     if @order_delivery_address.valid?
       pay_item
@@ -45,7 +46,7 @@ class OrdersController < ApplicationController
   end
 
   def move_to_index
-    return unless current_user.id != @item.user || @item.order != nil?
+    return unless current_user == @item.user
 
     redirect_to root_path
   end
