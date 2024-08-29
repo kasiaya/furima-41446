@@ -73,6 +73,24 @@ RSpec.describe OrderDeliveryAddress, type: :model do
         @order_delivery_address.valid?
         expect(@order_delivery_address.errors.full_messages).to include("Token can't be blank")
       end
+
+      it '番地が空では購入できないこと' do
+        @order_delivery_address.street_number = nil
+        @order_delivery_address.valid?
+        expect(@order_delivery_address.errors.full_messages).to include("Street number can't be blank")
+      end
+
+      it '電話番号に半角数字以外が含まれている場合は購入できないこと' do
+        @order_delivery_address.phone_number = 'あ１023456789'
+        @order_delivery_address.valid?
+        expect(@order_delivery_address.errors.full_messages).to include('Phone number must be 10 or 11 digits')
+      end
+
+      it 'itemが紐付いていないと保存できないこと' do
+        @order_delivery_address.item_id = nil
+        @order_delivery_address.valid?
+        expect(@order_delivery_address.errors.full_messages).to include("Item can't be blank")
+      end
     end
   end
 end
